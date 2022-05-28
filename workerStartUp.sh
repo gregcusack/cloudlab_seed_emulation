@@ -1,5 +1,5 @@
 #!/bin/bash
-MANAGER_IP=192.168.6.1
+# MANAGER_IP=192.168.6.1
 sudo apt-get update
 sudo apt-get -y install \
     ca-certificates \
@@ -19,14 +19,14 @@ chmod +x ~/docker-compose
 sudo mv ~/docker-compose /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
-TOKEN=$(sudo ssh -o StrictHostKeyChecking=no -p 22 "root@node0" "docker swarm join-token --quiet manager")
-while [[ $TOKEN != SWMTKN* ]]
-do
-    echo "waiting for manager node to create the swarm..."
-    sleep 5
-    TOKEN=$(sudo ssh -o StrictHostKeyChecking=no -p 22 "root@node0" "docker swarm join-token --quiet manager")
-done
-TOKEN=$(sudo ssh -o StrictHostKeyChecking=no -p 22 "root@node0" "docker swarm join-token --quiet manager")
-sudo docker swarm join --token $TOKEN $MANAGER_IP:2377
+# TOKEN=$(sudo ssh -o StrictHostKeyChecking=no -p 22 "root@node0" "docker swarm join-token --quiet manager")
+# while [[ $TOKEN != SWMTKN* ]]
+# do
+#     echo "waiting for manager node to create the swarm..."
+#     sleep 5
+#     TOKEN=$(sudo ssh -o StrictHostKeyChecking=no -p 22 "root@node0" "docker swarm join-token --quiet manager")
+# done
+# TOKEN=$(sudo ssh -o StrictHostKeyChecking=no -p 22 "root@node0" "docker swarm join-token --quiet manager")
+# sudo docker swarm join --token $TOKEN $MANAGER_IP:2377
 
-sudo modprobe mpls_router
+# sudo modprobe mpls_router
