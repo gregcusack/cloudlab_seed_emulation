@@ -13,8 +13,10 @@ echo \
 sudo apt-get update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 
-curl -L "https://github.com/docker/compose/releases/download/$(curl https://github.com/docker/compose/releases | grep -m1 '<a href="/docker/compose/releases/download/' | grep -o 'v[0-9:].[0-9].[0-9]')/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+wget https://github.com/docker/compose/releases/download/v2.5.1/docker-compose-linux-x86_64 -P ~/
+mv ~/docker-compose-linux-x86_64 ~/docker-compose
+chmod +x ~/docker-compose
+sudo mv ~/docker-compose /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 sudo docker swarm init --advertise-addr=$MANAGER_IP
